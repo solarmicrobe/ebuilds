@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<repositories version="1.0">
+        <repo priority="50" quality="experimental" status="unofficial">
+                <name>solarmicrobe-ebuilds</name>
+                <description>Custom stuff for rezzell.com</description>
+                <homepage>http://github.com/sarnold/</homepage>
+                <owner>
+                        <email>christiangeek6170@gmail.com</email>
+                </owner>
+                <source type="git">git://github.com:solarmicrobe/ebuilds.git</source>
+                <source type="git">https://github.com/solarmicrobe/ebuilds.git</source>
+        </repo>
+</repositories>
