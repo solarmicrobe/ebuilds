@@ -5,9 +5,9 @@
 EAPI="2"
 inherit games java-pkg-2 versionator
 
-DESCRIPTION="Feed the Beast server for Minecraft"
+DESCRIPTION="Feed the Beast Unleashed server for Minecraft"
 HOMEPAGE="http://feed-the-beast.com/"
-SRC_URI="http://www.creeperrepo.net/direct/FTB2/18606e7928709218bd2a4386fb84ada9/modpacks%5EUnleashed%5E"`echo
+SRC_URI="http://www.creeperrepo.net/FTB2/modpacks%5EUnleashed%5E"`echo
 ${PV} | tr '.' _`"%5EUnleashed-server.zip"
 LICENSE="as-is"
 SLOT="0"
