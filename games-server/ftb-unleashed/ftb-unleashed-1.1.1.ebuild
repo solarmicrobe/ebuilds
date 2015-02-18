@@ -7,8 +7,7 @@ inherit games java-pkg-2 versionator
 
 DESCRIPTION="Feed the Beast Unleashed server for Minecraft"
 HOMEPAGE="http://feed-the-beast.com/"
-SRC_URI="http://www.creeperrepo.net/FTB2/modpacks%5EUnleashed%5E"`echo
-${PV} | tr '.' _`"%5EUnleashed-server.zip"
+SRC_URI="http://www.creeperrepo.net/FTB2/modpacks%5EUnleashed%5E"`echo ${PV} | tr '.' _`"%5EUnleashed-server.zip"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
