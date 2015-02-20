@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -22,7 +22,7 @@ RDEPEND=">=virtual/jre-1.6
 S="${WORKDIR}"
 
 pkg_setup() {
-	ewarn "This package is NOT required if you want to run CraftBukkit."
+	ewarn "This package is NOT required if you want to run a modded."
 	java-pkg-2_pkg_setup
 	games_pkg_setup
 }

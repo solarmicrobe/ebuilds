@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -8,6 +8,7 @@ inherit games java-pkg-2
 DESCRIPTION="Official dedicated server for Minecraft"
 HOMEPAGE="http://www.minecraft.net"
 SRC_URI="http://assets.minecraft.net/${PV//./_}/minecraft_server.jar -> ${P}.jar"
+#SRC_URI="https://s3.amazonaws.com/Minecraft.Download/versions/${PV}/minecraft_server${PV}.jar"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -21,7 +22,7 @@ RDEPEND=">=virtual/jre-1.6
 S="${WORKDIR}"
 
 pkg_setup() {
-	ewarn "This package is NOT required if you want to run CraftBukkit."
+	ewarn "This package is NOT required if you want to run a modded server."
 	java-pkg-2_pkg_setup
 	games_pkg_setup
 }
