@@ -8,7 +8,7 @@ else
 fi
 
 if [[ "$(whoami)" == "@GAMES_USER_DED@" ]]; then
-	gjl_pwd="/var/lib/minecraft/${NAME}"
+	gjl_pwd="/var/lib/@SERVER_SUBTYPE@/${NAME}"
 else
 	gjl_pwd="${HOME}/.minecraft/servers/${NAME}"
 fi

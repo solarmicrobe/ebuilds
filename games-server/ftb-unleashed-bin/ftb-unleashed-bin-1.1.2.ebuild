@@ -3,11 +3,11 @@
 # $Header: $
 
 EAPI="2"
-inherit games java-pkg-2
+inherit games java-pkg-2 versionator
 
-DESCRIPTION="Official dedicated server for Minecraft"
-HOMEPAGE="http://www.minecraft.net"
-SRC_URI="http://assets.minecraft.net/${PV//./_}/minecraft_server.jar -> ${P}.jar"
+DESCRIPTION="Feed the Beast Unleashed server for Minecraft"
+HOMEPAGE="http://feed-the-beast.com/"
+SRC_URI="http://www.creeperrepo.net/FTB2/modpacks%5EUnleashed%5E"`echo ${PV} | tr '.' _`"%5EUnleashed-server.zip"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -21,8 +21,7 @@ RDEPEND=">=virtual/jre-1.6
 S="${WORKDIR}"
 
 pkg_setup() {
-	ewarn "This package is NOT required if you want to run a modded."
-	java-pkg-2_pkg_setup
+		java-pkg-2_pkg_setup
 	games_pkg_setup
 }
 
@@ -31,13 +30,16 @@ src_unpack() {
 }
 
 java_prepare() {
-	cp "${FILESDIR}"/directory.sh . || die
+	cp "${FILESDIR}"/{directory.sh,init.sh} . || die
 	sed -i "s/@GAMES_USER_DED@/${GAMES_USER_DED}/g" directory.sh || die
+	sed -i "s/@GAMES_USER_DED@/${GAMES_USER_DED}/g" init.sh || die
 }
 
 src_install() {
 	local ARGS
 	use ipv6 || ARGS="-Djava.net.preferIPv4Stack=true"
+
+	newinitd init.sh ${PN} || die
 
 	java-pkg_newjar "${DISTDIR}/${P}.jar" "${PN}.jar"
 	java-pkg_dolauncher "${PN}" -into "${GAMES_PREFIX}" -pre directory.sh \

@@ -21,8 +21,7 @@ RDEPEND=">=virtual/jre-1.6
 S="${WORKDIR}"
 
 pkg_setup() {
-	ewarn "This package is NOT required if you want to run a modded."
-	java-pkg-2_pkg_setup
+		java-pkg-2_pkg_setup
 	games_pkg_setup
 }
 

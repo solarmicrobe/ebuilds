@@ -2,12 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI="2"
 inherit games java-pkg-2 versionator
 
 DESCRIPTION="Feed the Beast Unleashed server for Minecraft"
 HOMEPAGE="http://feed-the-beast.com/"
-SRC_URI=modpacks%5EUnleashed%5E"`echo ${PV} | tr '.' _`"%5EUnleashed-server.zip"
+SRC_URI="http://www.creeperrepo.net/FTB2/modpacks%5EUnleashed%5E"`echo ${PV} | tr '.' _`"%5EUnleashed-server.zip"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -21,11 +21,8 @@ RDEPEND=">=virtual/jre-1.6
 S="${WORKDIR}"
 
 pkg_setup() {
-	ewarn "This package is NOT required if you want to run a modded."
-	java-pkg-2_pkg_setup
+		java-pkg-2_pkg_setup
 	games_pkg_setup
-        wget -P ${WORKDIR} http://s3.amazonaws.com/Minecraft.Download/versions/versions.json
-        PV=`awk '/\"snapshot\": \"(.*)\",$/ {printf("%s\n",$0)}' ${WORKDIR}/version.json | cut -d\" -f4` || die
 }
 
 src_unpack() {

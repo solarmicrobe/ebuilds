@@ -5,8 +5,34 @@
 
 extra_started_commands="console"
 
-MULTIVERSE="${SVCNAME#*.}"
-[[ "${SVCNAME}" == "${MULTIVERSE}" ]] && MULTIVERSE="main"
+# Parse versions
+OIFS=$IFS
+IFS='-'
+arr=($SVCNAME)
+IFS='.'
+arr=(${arr[2]})
+MULTIVERSE="${arr[3]}" # ex test
+MAJOR=${arr[0]:-1}
+MINOR=${arr[1]}
+PATCH=${arr[2]}
+IFS=$OIFS
+
+[[ -z "${MULTIVERSE}" ]] && MULTIVERSE="main"
+SERVER="${SVCNAME/-bin*/}" # ex. minecraft-server
+
+# Gather exe path
+EXE="@GAMES_PREFIX@"
+if [[ -z "${MAJOR}" ]]; then
+	EXE="${EXE}/${MAJOR}"
+fi
+
+if [[ -z "${MINOR}" ]]; then
+	EXE="${EXE}/${MINOR}"
+fi
+
+if [[ -z "${PATCH}" ]]; then
+	# FIXME
+fi
 
 LOCK="/var/lib/@SERVER_SUBTYPE@/${MULTIVERSE}/server.log.lck"
 PID="/var/run/@SERVER_SUBTYPE@/${MULTIVERSE}.pid"
@@ -17,10 +43,7 @@ depend() {
 }
 
 start() {
-	local SERVER="${SVCNAME%%.*}"
-	local EXE="/usr/games/bin/${SERVER}"
-
-	ebegin "Starting @SERVER_SUBTYPE@ multiverse \"${MULTIVERSE}\" using ${SERVER}"
+	ebegin "Starting ${SVCNAME%-*.*.*} multiverse \"${MULTIVERSE}\" using ${SERVER}"
 
 	if [[ ! -x "${EXE}" ]]; then
 		eend 1 "${SERVER} was not found. Did you install it?"
@@ -56,3 +79,7 @@ stop() {
 console() {
 	exec /usr/bin/tmux -S "${SOCKET}" attach-session
 }
+
+function join { local IFS="$1"; shift; echo "$*"; }
+
+
