@@ -8,7 +8,7 @@
       <email>christiangeek6170@gmail.com</email>
       <name>Russell Parks</name>
     </owner>
-    <source type="git">git://github.com/solarmicrobe/ebuilds.git</source>
+    <source type="git">https://github.com/solarmicrobe/ebuilds.git</source>
     <feed>https://github.com/solarmicrobe/ebuilds/commits/master.atom</feed>
   </repo>
 </repositories>
